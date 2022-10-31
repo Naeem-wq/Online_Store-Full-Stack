@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -6,11 +6,9 @@
         Shop Page
 *****************************/
 
-body{
-    
-}
+body {}
 
-.hero-image{
+.hero-image {
     background-image: url("https://www.vans.com/content/publish/caas/v1/media/248024/data/a036db259c857b9a4bb68fca5a73db13/Kids_Glow_Shark_OMU_Desktop.gif");
     background-position: center center;
     background-repeat: no-repeat;
@@ -19,18 +17,18 @@ body{
     height: 100vh;
 }
 
-.pageTitle{
+.pageTitle {
     position: absolute;
     left: 4%;
     top: 45%;
 }
 
-.hero-text{
+.hero-text {
     color: white;
     font-weight: bolder;
 }
 
-.headerBtn{
+.headerBtn {
     background-color: red;
     color: white;
     border: none;
@@ -39,24 +37,24 @@ body{
     font-weight: bolder;
 }
 
-.navbar{
+.navbar {
     background-color: transparent !important;
 }
 
-.navbar-brand{
+.navbar-brand {
     padding-left: 3%;
 }
 
-.nav-link{
+.nav-link {
     color: black !important;
     font-weight: bolder;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: rgb(38, 34, 34) !important;
 }
 
-.navbar-text{
+.navbar-text {
     color: white !important;
     font-weight: bolder;
     text-decoration: none;
@@ -65,51 +63,68 @@ body{
     border-radius: 50px;
 }
 
-.pageDirects{
+.pageDirects {
     display: flex;
     justify-content: space-between;
     margin-left: 4%;
     margin-right: 4%;
 }
 
-.pageLinks{
+.pageLinks {
     color: black;
     text-decoration: none;
     font-weight: bold;
 }
 
-.pageLinks:hover{
+.pageLinks:hover {
     color: red;
 }
 
-.featuredText{
+.featuredText {
     text-align: center;
 }
 
-.featuredHeadingPlacement{
+.featuredHeadingPlacement {
     text-align: center;
 }
 
-.featuredProducts{
+.featuredProducts {
     display: flex;
     gap: 8%;
     justify-content: center;
     margin-top: 2%;
 }
 
-.featuredHeading{
+.featuredHeading {
     text-decoration: none;
     color: black;
     font-weight: bolder;
     font-size: x-large;
 }
 
-.featuredHeading:hover{
+.featuredHeading:hover {
     color: black;
 }
 
-.featuredImg{
+.featuredImg {
     width: 350px;
     height: 300px;
     border-radius: 10px;
+}
+
+/* css grid */
+
+.parent {
+    margin: 3%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+    text-align: center;
+}
+
+.shoeImage{
+    width: 150px;
+    height: 200px;
 }
