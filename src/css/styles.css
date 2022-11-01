@@ -27,12 +27,16 @@
 }
 
 .headerBtn {
-    background-color: red;
+    background-color: rgba(216, 141, 141, 0.482);
     color: white;
     border: none;
     padding: 3% 5%;
     border-radius: 50px;
     font-weight: bolder;
+}
+
+.headerBtn:hover{
+    background-color: rgba(216, 141, 141, 0.801);
 }
 
 .navbar {
