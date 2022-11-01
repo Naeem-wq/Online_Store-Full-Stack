@@ -6,15 +6,13 @@
         Shop Page
 *****************************/
 
-body {}
-
 .hero-image {
     background-image: url("https://www.vans.com/content/publish/caas/v1/media/248024/data/a036db259c857b9a4bb68fca5a73db13/Kids_Glow_Shark_OMU_Desktop.gif");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 100vh;
+    height: 85vh;
 }
 
 .pageTitle {
@@ -45,15 +43,6 @@ body {}
     padding-left: 3%;
 }
 
-.nav-link {
-    color: black !important;
-    font-weight: bolder;
-}
-
-.nav-link:hover {
-    color: rgb(38, 34, 34) !important;
-}
-
 .navbar-text {
     color: white !important;
     font-weight: bolder;
@@ -71,7 +60,7 @@ body {}
 }
 
 .pageLinks {
-    color: black;
+    color: white;
     text-decoration: none;
     font-weight: bold;
 }
@@ -115,7 +104,7 @@ body {}
 /* css grid */
 
 .parent {
-    margin: 3%;
+    margin: 5%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
@@ -126,5 +115,73 @@ body {}
 
 .shoeImage{
     width: 150px;
-    height: 200px;
+    height: 150px;
 }
+
+.shoeImage:hover{
+    transform: scale(1.1, 1.2);
+}
+
+.shoeText{
+    margin-top: 5%;
+}
+
+.shoePrice{
+    color: red;
+}
+
+
+/* Footer */
+
+
+.footer {
+    background-color: #333;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    margin-top: 3%;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 18px;
+    padding: 28px 0;
+  }
+  
+  .social-icon {
+    height: 22px;
+    width: 22px;
+  }
+  
+  .footer-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    line-height: 3;
+  }
+  
+  .footer-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .logo-footer {
+    width: 160px;
+  }
+  
+  .copyright {
+    max-width: 230px;
+  }
+  
+  .address {
+    max-width: 200px;
+    padding-top: 11px;
+  }
+  
+  .footer-heading {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.801);
+  }
+  
