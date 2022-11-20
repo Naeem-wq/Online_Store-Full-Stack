@@ -8,53 +8,317 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Page title -->
-    <title>Document</title>
+    <title>Neemo's Furniture Store - Wishlist</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Ionicon Icon Link -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- CSS link -->
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="/src/css/styles.css">
+
+    <!-- Queries Css -->
+    <link rel="stylesheet" href="/src/css/queries.css">
 
     <!-- JS link -->
-    <script src="../js/script.js" defer></script>
+    <script src="/src/js/script.js" type="module" defer></script>
 
 </head>
 
 <body>
 
-    <!-- Header Section -->
-    <header>
+    <div id="app">
+
+         <!-- Shopping cart sidebar -->
+         <div class="offcanvas offcanvas-end offcanvas-override container-fluid p-4" tabindex="-1" id="offcanvasRight"
+         aria-labelledby="offcanvasRightLabel">
+         <div class="offcanvas-header">
+             <h5 class="offcanvas-title cart-heading" id="offcanvasRightLabel">
+                 Your Shopping Cart ({{ shoppingCartList.length }})
+             </h5>
+             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+         </div>
+         <div class="offcanvas-body">
+             <ul class="product-list ps-0">
+                 <li v-for="product in shoppingCartList" :key="product.id" class="product-card-cart">
+                     <div class="card card-override mb-3">
+                         <div class="row g-0">
+                             <div class="col-4 cart-product-img">
+                                 <img :src="product.imageHomePath" class="img-fluid" :alt="product.name" />
+                             </div>
+                             <div class="col-8">
+                                 <div class="card-body text-end pt-4 pe-4">
+                                     <div>
+                                         <button class="btn-nav btn-card mb-4" @click="removeFromCart(product.id)">
+                                             <ion-icon class="icon-nav" name="trash-outline"></ion-icon>
+                                         </button>
+                                     </div>
+                                     <h5 class="card-title product-name">
+                                         {{ product.name }}
+                                     </h5>
+
+                                     <p class="product-cost mb-0">R{{ product.cost }}</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             </ul>
+             <p class="cart-total text-end py-3 my-5 pe-4">
+                 Total: R {{ shoppingCartTotal }}
+             </p>
+             <button class="btn-checkout text-uppercase d-flex flex-row align-items-center gap-2 mx-auto">
+                 <ion-icon name="lock-closed" class="icon-checkout"></ion-icon>
+                 <span>Checkout</span>
+             </button>
+         </div>
+     </div>
+
+     <!-- Navigation bar -->
+     <nav class="navbar navbar-expand-lg sticky-top navbar">
+         <div class="navbar-mobile container-fluid px-5">
+             <div class="d-flex justify-content-between align-items-center">
+                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                     aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button>
+
+                 <a class="navbar-brand" href="../../index.html">
+                     <img class="logo" src="/src/images/neemo's Logo.png" alt="Naeems furniture logo" /></a>
+
+                 <div class="d-flex nav-icons nav-icons-mobile">
+                     <button class="btn-nav">
+                         <ion-icon class="icon-nav" name="person-outline"></ion-icon>
+                     </button>
+                     <button class="btn-nav">
+                         <a href="wishlist.html">
+                             <ion-icon class="icon-nav" name="heart-outline"></ion-icon>
+                         </a>
+                     </button>
+                     <button class="btn-nav position-relative">
+                         <ion-icon class="icon-nav" name="cart-outline" type="button" data-bs-toggle="offcanvas"
+                             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></ion-icon>
+                         <span v-if="shoppingCartList.length"
+                             class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
+                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                             aria-controls="offcanvasRight">
+                             {{shoppingCartList.length}}
+                         </span>
+                     </button>
+                 </div>
+             </div>
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                         <a class="nav-link active" aria-current="page" href="#">Home</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="shop.html">Products</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="lookbook.html">Lookbook</a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a class="nav-link" href="about.html">About</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="contact.html">Contact</a>
+                     </li>
+                 </ul>
+                 <div class="d-flex nav-icons nav-icons-desktop">
+                     <button class="btn-nav">
+                         <ion-icon class="icon-nav" name="person-outline"></ion-icon>
+                     </button>
+                     <button class="btn-nav">
+                         <a href="wishlist.html">
+                             <ion-icon class="icon-nav" name="heart-outline"></ion-icon>
+                         </a>
+                     </button>
+                     <button class="btn-nav position-relative">
+                         <ion-icon class="icon-nav" name="cart-outline" type="button" data-bs-toggle="offcanvas"
+                             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></ion-icon>
+                         <span v-if="shoppingCartList.length"
+                             class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
+                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                             aria-controls="offcanvasRight">
+                             {{shoppingCartList.length}}
+                         </span>
+                     </button>
+                 </div>
+             </div>
+         </div>
+     </nav>
 
 
-    </header>
-    <!-- /Header Section -->
-
-    <!-- Main Section -->
-    <main>
+        <!-- Main Section -->
+        <main>
 
 
-    </main>
-    <!-- /Main Section -->
+            <div class="wishlist-display container-fluid p-5">
+                <h3 class="wishlist-heading text-center pb-3">Wishlist</h3>
+                <ul class="products-section ps-0 pb-5">
+                    <li v-for="product in wishList" :key="product.id" class="product-card">
+                        <div class="card card-override">
+                            <div class="product-img">
+                                <img :src="product.image" class="card-img-top" alt="product.name" />
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-center p-4">
+                                <h5 class="card-title product-name">{{ product.name }}</h5>
+                                <div class="d-flex justify-content-between">
+                                    <p class="product-cost mb-0">R{{ product.cost }}</p>
+                                    <div>
+                                        <button class="btn-nav me-2" @click="removeFromWishList(product.id)">
+                                            <ion-icon class="icon-nav" name="trash-outline"></ion-icon>
+                                        </button>
+                                        <button class="btn-nav" @click="addToCart(product.id)">
+                                            <ion-icon class="icon-nav" name="cart-outline"></ion-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-    <!-- Footer Section -->
-    <footer>
 
-
-    </footer>
-    <!-- /Footer Section -->
+        </main>
+        <!-- /Main Section -->
 
 
 
 
+        <!-- Footer Section -->
+        <footer>
+
+            <footer class="footer">
+                <div class="container-fluid py-5">
+                  <div class="container py-5">
+                    <div class="row">
+                      <div class="col-sm-6 col-lg-3 logo-col">
+                        <a href="#" class="footer-logo">
+                          <img
+                            class="logo-footer"
+                            src="/src/images/neemo's Logo.png"
+                            alt="Neemo's furniture logo"
+                          />
+                        </a>
+        
+                        <ul class="social-links">
+                          <li>
+                            <a class="footer-link" href="#"
+                              ><ion-icon
+                                class="social-icon"
+                                name="logo-instagram"
+                              ></ion-icon
+                            ></a>
+                          </li>
+                          <li>
+                            <a class="footer-link" href="#"
+                              ><ion-icon
+                                class="social-icon"
+                                name="logo-facebook"
+                              ></ion-icon
+                            ></a>
+                          </li>
+                          <li>
+                            <a class="footer-link" href="#"
+                              ><ion-icon
+                                class="social-icon"
+                                name="logo-twitter"
+                              ></ion-icon
+                            ></a>
+                          </li>
+                        </ul>
+        
+                        <p class="copyright">
+                          Copyright &copy;Naeem Witbooi <span class="year">2022</span>
+                        </p>
+                      </div>
+        
+                      <div class="col-sm-6 col-lg-3 address-col">
+                        <p class="footer-heading">Contact us</p>
+                        <address class="contacts">
+                          <p class="address">
+                            Guardian Road, Heideveld. Athlone 7764,
+                            South Africa
+                          </p>
+        
+                          <ul>
+                            <li>
+                              <a
+                                class="footer-link"
+                                href="tel:021-201-6370"
+                                target="_blank"
+                                >021-234-5678</a
+                              >
+                            </li>
+                            <li>
+                              <a
+                                class="footer-link"
+                                href="mailto:naeemwitbooi4@gmail.com"
+                                target="_blank"
+                                >naeemwitbooi4@gmail.com</a
+                              >
+                            </li>
+                          </ul>
+                        </address>
+                      </div>
+        
+                      <nav class="col-sm-4 col-lg-2 nav-col">
+                        <p class="footer-heading">Account</p>
+                        <ul class="footer-nav">
+                          <li><a class="footer-link" href="#">Create account</a></li>
+                          <li><a class="footer-link" href="#">Sign in</a></li>
+                          <li><a class="footer-link" href="#">iOS app</a></li>
+                          <li><a class="footer-link" href="#">Android app</a></li>
+                        </ul>
+                      </nav>
+        
+                      <nav class="col-sm-4 col-lg-2 nav-col">
+                        <p class="footer-heading">Company</p>
+                        <ul class="footer-nav">
+                          <li><a class="footer-link" href="#">About</a></li>
+                          <li><a class="footer-link" href="#">For Business</a></li>
+                          <li><a class="footer-link" href="#">Partners</a></li>
+                          <li><a class="footer-link" href="#">Careers</a></li>
+                        </ul>
+                      </nav>
+        
+                      <nav class="col-sm-4 col-lg-2 nav-col">
+                        <p class="footer-heading">Resources</p>
+                        <ul class="footer-nav">
+                          <li><a class="footer-link" href="#">FAQ</a></li>
+                          <li><a class="footer-link" href="#">Help center</a></li>
+                          <li><a class="footer-link" href="#">Privacy & terms</a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </footer>
+
+        </footer>
+        <!-- /Footer Section -->
+
+
+    </div>
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
+
+    <!-- link to Vue -->
+    <script src="https://unpkg.com/vue@3"></script>
 
 </body>
 
