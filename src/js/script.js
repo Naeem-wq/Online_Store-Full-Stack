@@ -13,7 +13,7 @@ createApp({
         new Product(
           "001",
           "Chairs",
-          "../resources/chair-1-sm.jpg",
+          "../images/chair-1-sm.jpg",
           "Mabibi Chair - Dark",
           "",
           1495,
